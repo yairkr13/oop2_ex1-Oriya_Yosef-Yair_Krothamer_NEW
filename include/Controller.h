@@ -6,7 +6,7 @@ class Controller
 {
 public:
 	Controller();
-	//~Controller();
+	//~Controller();//hiiiiiii
 	void run();
 private:
 	void print() const;
