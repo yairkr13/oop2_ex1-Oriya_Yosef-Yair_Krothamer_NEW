@@ -4,6 +4,8 @@
 
 class ComplexFunc : public Function
 {
+public:
+    //ComplexFunc();
 protected:
     std::shared_ptr<Function> function1;
     std::shared_ptr<Function> function2;

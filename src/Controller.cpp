@@ -7,7 +7,7 @@
 
 Controller::Controller()
 {
-	m_simplefunc.push_back(std::make_shared<LogFunc>());	
+	m_simpleFunc.push_back(std::make_shared<LogFunc>(10));
 }
 
 void Controller::run()
@@ -25,16 +25,18 @@ void Controller::run()
 void Controller::print() const
 {
     //print the simple functions
-    for (int i = 0; i < m_simplefunc.size(); i++)
+    for (int i = 0; i < m_simpleFunc.size(); i++)
     {
-        std::cout << i << ":";
-        m_functions[i]->print();
+        std::cout << i << ": ";
+        m_simpleFunc[i]->print();
+        std::cout << std::endl;
     }
     //print the complex functions
-    for (int i = 0; i < m_complexfunc.size(); i++)
+    for (int i = 0; i < m_complexFunc.size(); i++)
     {
-        std::cout << m_simplefunc.size() + i << ":";
-        m_functions[i]->print();
+        std::cout << m_simpleFunc.size() + i << ": ";
+        m_complexFunc[i]->print();
+        std::cout << std::endl;
     }
 }
 
@@ -78,7 +80,7 @@ bool Controller::handleInput()
     // מאפשר לקרוא מתוך ליין כאילו זה קלט רגיל
 
     if (str == "log")
-    {
+    {//ask yehazkel B!!!!!!!!!!!!!!!
         double base;
         iss >> base;
         // קורא את המספר שאחרי הלוג
@@ -86,7 +88,11 @@ bool Controller::handleInput()
         //log(base);
         // כאן צריך שפונקציית לוג תקבל דאבל ולא סטרינג
         // יוצר אובייקט חדש של לוג ומעביר את base 
-        m_simplefunc.push_back(std::make_shared<LogFunc>(base));
+        m_simpleFunc.push_back(std::make_shared<LogFunc>(base));
+    }
+    else if (str == "eval")
+    {
+        calculateFunc();
     }
     else if (str == "del")
     {
@@ -97,20 +103,25 @@ bool Controller::handleInput()
         deleteFunc(index);
     }
     else
-    {
         std::cout << "Unknown command\n";
-    }
-
+    
     return true;
 }
 
 void Controller::deleteFunc(int index)
 {
-    int simpleSize = m_simplefunc.size();
+    int simpleSize = m_simpleFunc.size();
     if (index >= 0 && index < simpleSize)
-        m_simplefunc.erase(m_simplefunc.begin() + index);
-    else if (index < simpleSize + m_complexfunc.size())
-        m_complexfunc.erase(m_complexfunc.begin() + (index - simpleSize));
+        m_simpleFunc.erase(m_simpleFunc.begin() + index);
+    else if (index < simpleSize + m_complexFunc.size())
+        m_complexFunc.erase(m_complexFunc.begin() + (index - simpleSize));
+}
+
+void Controller::calculateFunc(int index, double x) const 
+{
+    int simpleSize = m_simpleFunc.size();
+    if (index >= 0 && index < simpleSize)
+        simpleSize
 }
 //bool Controller::handleInput()
 //{
@@ -144,9 +155,9 @@ void Controller::deleteFunc(int index)
 //  
 //void Controller::deleteFunc(int index)
 //{
-//	int simpleSize = m_simplefunc.size();
+//	int simpleSize = m_simpleFunc.size();
 //	if (index >= 0 && index < simpleSize)
-//		m_simplefunc.erase(m_simplefunc.begin() + index);
-//	else if (index < simpleSize + m_complexfunc.size())
-//		m_complexfunc.erase(m_complexfunc.begin() + (index - simpleSize));
+//		m_simpleFunc.erase(m_simpleFunc.begin() + index);
+//	else if (index < simpleSize + m_complexFunc.size())
+//		m_complexFunc.erase(m_complexFunc.begin() + (index - simpleSize));
 //}

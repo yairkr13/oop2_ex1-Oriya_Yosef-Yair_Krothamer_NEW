@@ -6,7 +6,7 @@ void PolyFunc::calculate(double x) const//takes the value or save as m_xValue???
 	//--------------------
 }
 
-PolyFunc* PolyFunc::cloneImpl()
+PolyFunc* PolyFunc::cloneImpl() const
 {
 	return new PolyFunc(*this);
 }

@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "SimpleFunc.h"
+#include "ComplexFunc.h"
 
 class Controller
 {
@@ -13,6 +14,7 @@ private:
 	bool handleInput();
 	void printHelp() const;
 	void deleteFunc(int index);
-	std::vector<std::shared_ptr<SimpleFunc>> m_simplefunc;
+	std::vector<std::shared_ptr<SimpleFunc>> m_simpleFunc;
+	std::vector<std::shared_ptr<ComplexFunc>> m_complexFunc;
 	//std::vector<SimpleFunc *> m_functions
 };

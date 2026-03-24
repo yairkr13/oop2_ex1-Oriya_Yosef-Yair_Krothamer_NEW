@@ -5,10 +5,10 @@
 class PolyFunc : public SimpleFunc
 {
 public:
-    PolyFunc(const std::vector<double>& numbers);
+    //PolyFunc(const std::vector<double>& numbers);
 
     void print(const std::string& x = "x") const override;
-    double calculate(double x) const override;
+    void calculate(double x) const override;
 
 protected:
     PolyFunc* cloneImpl() const override;
