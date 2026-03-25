@@ -1,7 +1,7 @@
 #include "PolyFunc.h"
 #include <iostream>
 
-void PolyFunc::calculate(double x) const//takes the value or save as m_xValue????
+double PolyFunc::calculate(double x) const//takes the value or save as m_xValue????
 {
 	double answer = 0;
 	double xVal = 1;
@@ -12,6 +12,7 @@ void PolyFunc::calculate(double x) const//takes the value or save as m_xValue???
 	}
 	print(std::to_string(x));
 	std::cout << " = " << answer << std::endl;
+	return answer;
 }
 
 PolyFunc* PolyFunc::cloneImpl() const

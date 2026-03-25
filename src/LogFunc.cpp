@@ -16,11 +16,12 @@ LogFunc* LogFunc::cloneImpl() const
 	return new LogFunc(*this);
 }
 
-void LogFunc::calculate(double x) const//takes the value or save as m_xValue????
+double LogFunc::calculate(double x) const//takes the value or save as m_xValue????
 {
 	double answer = std::log10(x) / std::log10(m_base);
 	print(std::to_string(x));
 	std::cout << " = " << answer << std::endl;
+	return answer;
 }
 
 void LogFunc::print(const std::string& x) const

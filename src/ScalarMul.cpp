@@ -12,8 +12,15 @@ void ScalarMul::print(const std::string& x) const
 	std::cout << ")";
 }
 
-void ScalarMul::calculate(double x) const
+double ScalarMul::calculate(double x) const
 {
+	double answer = m_scalar * m_function->calculate(x);
 	print(std::to_string(x));
-	std::cout << " = " << m_scalar * m_function->calculate(x) << "\n";
+	std::cout << " = " << answer << "\n";
+	return answer;
+}
+
+ScalarMul* ScalarMul::cloneImpl() const
+{
+	return new ScalarMul(*this);
 }

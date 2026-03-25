@@ -1,10 +1,10 @@
 #pragma once
 #include "ComplexFunc.h"
 
-class AddFunc : public ComplexFunc
+class MulFunc : public ComplexFunc
 {
 public:
     //AddFunc()
     void print(const std::string& x = "x") const override;
-    void calculate(double x) const override;
+    double calculate(double x) const override;
 };
