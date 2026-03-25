@@ -8,7 +8,7 @@ public:
 
     void print(const std::string& x = "x") const override;
     double calculate(double x) const override;
-
+    
 protected:
     LogFunc* cloneImpl() const override;
 

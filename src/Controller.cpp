@@ -3,8 +3,11 @@
 #include <iostream>
 #include <string>
 #include <sstream>	
-#include <LogFunc.h>
-#include <AddFunc.h>
+#include "LogFunc.h"
+#include "AddFunc.h"
+#include "MulFunc.h"
+#include "PolyFunc.h"
+#include "ScalarMul.h"
 #include <memory>
 
 Controller::Controller()
@@ -92,7 +95,10 @@ bool Controller::handleInput()
         // יוצר אובייקט חדש של לוג ומעביר את base 
         m_simpleFunc.push_back(std::make_shared<LogFunc>(base));
     }
-    else if (str == "add")//fix!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+    else if (str == "poly")
+        m_simpleFunc.push_back(std::make_shared<PolyFunc>(line));
+    
+    else if (str == "add" || str=="mul")//fix!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
     {
         int index1, index2;
         iss >> index1 >> index2;
@@ -104,9 +110,13 @@ bool Controller::handleInput()
         // חובה לבדוק שהאינדקסים באמת קיימים
         if (p1 && p2)
         {
-            m_complexFunc.push_back(std::make_shared<AddFunc>(p1, p2));
+            if(str=="add")
+                m_complexFunc.push_back(std::make_shared<AddFunc>(p1, p2));
+            else if(str=="mul")
+                m_complexFunc.push_back(std::make_shared<MulFunc>(p1, p2));
         }
     }
+    
     else if (str == "eval")
     {
         int index;
@@ -114,6 +124,16 @@ bool Controller::handleInput()
         iss >> index >> x;
         evalFunc(index, x);
     }
+    else if (str=="scale")
+    {
+        int index;
+        double scalar;
+        iss >> index >> scalar;
+
+        if (index >= 0 && index < m_simpleFunc.size())
+            m_simpleFunc.push_back(std::make_shared<ScalarMul>(scalar, m_simpleFunc[index]->clone()));
+        
+	}
     else if (str == "del")
     {
         int index;
@@ -130,6 +150,7 @@ bool Controller::handleInput()
 
 void Controller::deleteFunc(int index)
 {
+    if (index < 0) return;
     int simpleSize = m_simpleFunc.size();
     if (index >= 0 && index < simpleSize)
         m_simpleFunc.erase(m_simpleFunc.begin() + index);

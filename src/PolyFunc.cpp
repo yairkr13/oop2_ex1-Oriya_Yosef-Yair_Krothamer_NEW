@@ -1,5 +1,16 @@
 #include "PolyFunc.h"
 #include <iostream>
+#include <sstream>
+
+PolyFunc::PolyFunc(const std::string& line)
+{
+	int n;
+	std::istringstream iss(line);
+	iss >> n;
+	m_numbers.resize(n);
+	for (int i = 0; i < n; i++)
+		iss >> m_numbers[i];
+}
 
 double PolyFunc::calculate(double x) const//takes the value or save as m_xValue????
 {

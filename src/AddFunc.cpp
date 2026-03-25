@@ -16,10 +16,13 @@ void AddFunc::print(const std::string& x) const
     std::cout << ")";
 }
 
-double AddFunc::calculate(double x) const
+double AddFunc::calculate(double x/*, bool toPrint*/) const
 {
     double answer = m_function1->calculate(x) + m_function2->calculate(x);
-    print(std::to_string(x));
-    std::cout << " = " << answer << "\n";
+    //if (toPrint)
+    //{
+        print(std::to_string(x));
+        std::cout << " = " << answer << "\n";
+    //}
     return answer;
 }

@@ -2,6 +2,7 @@
 #include <cmath>
 #include <iostream>
 #include <iomanip>
+#include <sstream>
 
 LogFunc::LogFunc(int base):m_base(base) //takes a string or double
 { 
@@ -19,7 +20,11 @@ LogFunc* LogFunc::cloneImpl() const
 double LogFunc::calculate(double x) const//takes the value or save as m_xValue????
 {
 	double answer = std::log10(x) / std::log10(m_base);
-	print(std::to_string(x));
+	//print(std::to_string(x));
+	std::ostringstream oss;
+	oss << x;
+
+	print(oss.str());
 	std::cout << " = " << answer << std::endl;
 	return answer;
 }
