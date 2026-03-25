@@ -6,7 +6,7 @@ class Function
 public:
 	//אבל המחלקה היא מחלקת בסיס פולימורפית (יש בה פונקציות וירטואל) ל
 	// לכן הסדקטרטור חייב להיות וירטואל....
-	virtual ~Function() = default;
+	//virtual ~Function() = default;
 	virtual void print(const std::string& x="x") const = 0;
 	virtual void calculate(double x) const = 0;//change to operator ()
 	

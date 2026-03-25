@@ -3,7 +3,15 @@
 
 void PolyFunc::calculate(double x) const//takes the value or save as m_xValue????
 {
-	//--------------------
+	double answer = 0;
+	double xVal = 1;
+	for (size_t i = 0;i < m_numbers.size(); i++)
+	{
+		answer += m_numbers[i] * (xVal);
+		xVal *= x; 
+	}
+	print(std::to_string(x));
+	std::cout << " = " << answer << std::endl;
 }
 
 PolyFunc* PolyFunc::cloneImpl() const
@@ -13,7 +21,7 @@ PolyFunc* PolyFunc::cloneImpl() const
 
 void PolyFunc::print(const std::string& x) const
 {
-	for (int i = 0; i < m_numbers.size(); i++)
+	for (size_t i = 0; i < m_numbers.size(); i++)
 	{
 		if (m_numbers[i] == 0)
 			continue;

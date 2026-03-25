@@ -4,9 +4,13 @@
 class ScalarMul : public SimpleFunc
 {
 public:
-	ScalarMul : public SimpleFunc();
-	~ScalarMul : public SimpleFunc();
+	ScalarMul(double scalar, std::shared_ptr<SimpleFunc> func);
+	//~ScalarMul : public SimpleFunc();
+	void print(const std::string& x = "x") const override;
+	void calculate(double x) const override;
 
+protected:
+	ScalarMul* cloneImpl() const override;
 private:
 
 };

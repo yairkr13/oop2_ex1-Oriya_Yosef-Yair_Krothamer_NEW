@@ -4,6 +4,8 @@
 #include <string>
 #include <sstream>	
 #include <LogFunc.h>
+#include <AddFunc.h>
+#include <memory>
 
 Controller::Controller()
 {
@@ -90,9 +92,27 @@ bool Controller::handleInput()
         // יוצר אובייקט חדש של לוג ומעביר את base 
         m_simpleFunc.push_back(std::make_shared<LogFunc>(base));
     }
+    else if (str == "add")//fix!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+    {
+        int index1, index2;
+        iss >> index1 >> index2;
+
+        // קריאה לפונקציית העזר במקום כל ה-if/else!
+        auto p1 = getFunc(index1);
+        auto p2 = getFunc(index2);
+
+        // חובה לבדוק שהאינדקסים באמת קיימים
+        if (p1 && p2)
+        {
+            m_complexFunc.push_back(std::make_shared<AddFunc>(p1, p2));
+        }
+    }
     else if (str == "eval")
     {
-        calculateFunc();
+        int index;
+        double x;
+        iss >> index >> x;
+        evalFunc(index, x);
     }
     else if (str == "del")
     {
@@ -117,11 +137,27 @@ void Controller::deleteFunc(int index)
         m_complexFunc.erase(m_complexFunc.begin() + (index - simpleSize));
 }
 
-void Controller::calculateFunc(int index, double x) const 
+void Controller::evalFunc(int index, double x) const 
+{
+    const auto funcPtr = getFunc(index); // קריאה לפונקציית העזר
+
+    if (funcPtr != nullptr) // מוודאים שהאינדקס באמת היה קיים
+    {
+        funcPtr->calculate(x);
+        // הערה: אם calculate רק מחזירה ערך ולא מדפיסה אותו, 
+        // אולי תצטרכי להוסיף כאן std::cout
+    }
+}
+
+std::shared_ptr<Function> Controller::getFunc(int index) const
 {
     int simpleSize = m_simpleFunc.size();
     if (index >= 0 && index < simpleSize)
-        simpleSize
+        return m_simpleFunc[index];
+    if (index >= simpleSize && index < simpleSize + m_complexFunc.size())
+        return m_complexFunc[index - simpleSize];
+
+    return nullptr; // אם האינדקס לא חוקי
 }
 //bool Controller::handleInput()
 //{

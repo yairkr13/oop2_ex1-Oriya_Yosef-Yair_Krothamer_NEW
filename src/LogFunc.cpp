@@ -1,6 +1,7 @@
 #include "LogFunc.h"
 #include <cmath>
 #include <iostream>
+#include <iomanip>
 
 LogFunc::LogFunc(int base):m_base(base) //takes a string or double
 { 
@@ -19,7 +20,7 @@ void LogFunc::calculate(double x) const//takes the value or save as m_xValue????
 {
 	double answer = std::log10(x) / std::log10(m_base);
 	print(std::to_string(x));
-	std::cout << " = " << answer;
+	std::cout << " = " << answer << std::endl;
 }
 
 void LogFunc::print(const std::string& x) const
