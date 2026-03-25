@@ -1,6 +1,12 @@
 #include "AddFunc.h"
 #include <iostream>
 
+//Need?
+AddFunc::AddFunc(std::shared_ptr<Function> ptr1,
+    std::shared_ptr<Function> ptr2)
+    : ComplexFunc(ptr1, ptr2)
+{
+}
 void AddFunc::print(const std::string& x) const
 {
     std::cout << "(";

@@ -12,5 +12,7 @@ public:
 protected:
 	ScalarMul* cloneImpl() const override;
 private:
-
+	//Yair add
+	double m_scalar;
+	std::shared_ptr<SimpleFunc> m_function;
 };
