@@ -253,14 +253,15 @@ bool Controller::evalCommand(std::istringstream& iss)
 
 void Controller::evalFunc(int index, double x) const
 {
-    const auto funcPtr = getFunc(index); // קריאה לפונקציית העזר
+    const auto funcPtr = getFunc(index);
 
-    if (funcPtr != nullptr) // מוודאים שהאינדקס באמת היה קיים
+    if (!funcPtr)
     {
-        funcPtr->calculate(x);
-        // הערה: אם calculate רק מחזירה ערך ולא מדפיסה אותו, 
-        // אולי תצטרכי להוסיף כאן std::cout
+        std::cout << "Invalid function index\n";
+        return;
     }
+
+    funcPtr->calculate(x);
 }
 
 bool Controller::scaleCommand(std::istringstream& iss)
@@ -293,11 +294,18 @@ bool Controller::delCommand(std::istringstream& iss)
 
 void Controller::deleteFunc(int index)
 {
-    if (index < 0) return;
-    int simpleSize = m_simpleFunc.size();
-    if (index >= 0 && index < simpleSize)
+    int simpleSize = static_cast<int>(m_simpleFunc.size());
+    int totalSize = simpleSize + static_cast<int>(m_complexFunc.size());
+
+    if (index < 0 || index >= totalSize)
+    {
+        std::cout << "Invalid function index\n";
+        return;
+    }
+
+    if (index < simpleSize)
         m_simpleFunc.erase(m_simpleFunc.begin() + index);
-    else if (index < simpleSize + m_complexFunc.size())
+    else
         m_complexFunc.erase(m_complexFunc.begin() + (index - simpleSize));
 }
 
