@@ -277,7 +277,7 @@ bool Controller::scaleCommand(std::istringstream& iss)
     }
 
     m_simpleFunc.push_back(
-        std::make_shared<ScalarMul>(scalar, m_simpleFunc[index]->clone())
+        std::make_shared<ScalarMul>(scalar, m_simpleFunc[index])
     );
 
     return true;
