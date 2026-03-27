@@ -26,7 +26,6 @@ double PolyFunc::calculate(double x) const//takes the value or save as m_xValue?
 	oss << x;
 
 	print(oss.str());
-	//print(std::to_string(x));
 	std::cout << " = " << answer << std::endl;
 	return answer;
 }
@@ -64,33 +63,3 @@ void PolyFunc::print(const std::string& x) const
 	if(allZero) // all the vector with zeroes
 		std::cout << 0;
 }
-
-//void PolyFunc::print(const std::string& x) const
-//{
-//	bool firstTerm = true;
-//
-//	for (size_t i = 0; i < m_numbers.size(); i++)
-//	{
-//		if (m_numbers[i] == 0)
-//			continue;
-//
-//		if (!firstTerm)
-//		{
-//			if (m_numbers[i] > 0)
-//				std::cout << " + ";
-//			else
-//				std::cout << " - ";
-//		}
-//		else
-//		{
-//			if (m_numbers[i] < 0)
-//				std::cout << "-";
-//		}
-//
-//		std::cout << std::abs(m_numbers[i]) << "*(" << x << ")^" << i;
-//		firstTerm = false;
-//	}
-//
-//	if (firstTerm)
-//		std::cout << "0";
-//}
