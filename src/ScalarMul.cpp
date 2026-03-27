@@ -1,5 +1,6 @@
 #include <iostream>
 #include "ScalarMul.h"
+#include <sstream>
 /*
 ScalarMul::ScalarMul(double scalar, std::shared_ptr<SimpleFunc> func) : 
 	m_function(func)
@@ -12,7 +13,7 @@ ScalarMul::ScalarMul(double scalar, std::shared_ptr<SimpleFunc> func)
 {
 	m_factor = scalar;
 	//m_function = func ? func->clone() : nullptr;
-	m_function = func;
+	m_function = func;//ask chet!!!!!!!!!!!!!!!!!!!!!!!!
 }
 
 std::shared_ptr<SimpleFunc> ScalarMul::multiplyByScalar(double scalar) const {
@@ -27,7 +28,11 @@ void ScalarMul::print(const std::string& x) const
 {
 	
 	std::cout << m_factor << "*(";
-	m_function->print(x);
+	std::ostringstream oss;
+	oss << x;
+
+	print(oss.str());
+	//m_function->print(x);
 	std::cout << ")";
 	
 	/*
