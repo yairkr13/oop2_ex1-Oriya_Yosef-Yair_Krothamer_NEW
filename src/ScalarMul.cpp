@@ -28,11 +28,8 @@ void ScalarMul::print(const std::string& x) const
 {
 	
 	std::cout << m_factor << "*(";
-	std::ostringstream oss;
-	oss << x;
-
-	print(oss.str());
-	//m_function->print(x);
+	
+	m_function->print(x);
 	std::cout << ")";
 	
 	/*
@@ -47,7 +44,10 @@ void ScalarMul::print(const std::string& x) const
 double ScalarMul::calculate(double x) const
 {
 	double answer = m_factor * m_function->calculate(x);
-	print(std::to_string(x));
+	std::ostringstream oss;
+	oss << x;
+
+	print(oss.str());
 	std::cout << " = " << answer << "\n";
 	return answer;
 }
