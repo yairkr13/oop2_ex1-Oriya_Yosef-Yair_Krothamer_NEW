@@ -5,10 +5,10 @@
 class ComplexFunc : public Function
 {
 public:
-    ComplexFunc(std::shared_ptr<Function> ptr1,
-        std::shared_ptr<Function> ptr2);
+    ComplexFunc(const std::shared_ptr<Function>& ptr1,
+        const std::shared_ptr<Function>& ptr2);
     
 protected:
-    std::shared_ptr<Function> m_function1;
-    std::shared_ptr<Function> m_function2;
+    std::shared_ptr<Function> m_func1Ptr;
+    std::shared_ptr<Function> m_func2Ptr;//const??????????????
 };

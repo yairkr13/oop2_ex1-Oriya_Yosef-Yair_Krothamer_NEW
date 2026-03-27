@@ -9,7 +9,7 @@ ScalarMul::ScalarMul(double scalar, std::shared_ptr<SimpleFunc> func) :
 }*/
 
 
-ScalarMul::ScalarMul(double scalar, std::shared_ptr<SimpleFunc> func)
+ScalarMul::ScalarMul(double scalar,const std::shared_ptr<SimpleFunc>& func)
 {
 	m_factor = scalar;
 	//m_function = func ? func->clone() : nullptr;
@@ -48,7 +48,7 @@ double ScalarMul::calculate(double x) const
 	oss << x;
 
 	print(oss.str());
-	std::cout << " = " << answer << "\n";
+	std::cout << " = " << std::round(answer * 100) / 100 << "\n";
 	return answer;
 }
 

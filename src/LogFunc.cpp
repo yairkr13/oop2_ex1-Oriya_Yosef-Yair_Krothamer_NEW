@@ -20,7 +20,7 @@ double LogFunc::calculate(double x) const//takes the value or save as m_xValue??
 	oss << x;
 
 	print(oss.str());
-	std::cout << " = " << answer << std::endl;
+	std::cout << " = " << std::round(answer*100)/100 << std::endl;
 	return answer;
 }
 

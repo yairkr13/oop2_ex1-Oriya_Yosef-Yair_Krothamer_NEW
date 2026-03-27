@@ -26,7 +26,7 @@ double PolyFunc::calculate(double x) const//takes the value or save as m_xValue?
 	oss << x;
 
 	print(oss.str());
-	std::cout << " = " << answer << std::endl;
+	std::cout << " = " << std::round(answer * 100) / 100 << std::endl;
 	return answer;
 }
 
@@ -35,12 +35,40 @@ PolyFunc* PolyFunc::cloneImpl() const
 	return new PolyFunc(*this);
 }
 
+//void PolyFunc::print(const std::string& x) const
+//{
+//	bool allZero = true;
+//	bool isSigned = true;
+//	
+//	for (size_t i = 0; i < m_numbers.size(); i++)
+//	{
+//		if (m_numbers[i] == 0)
+//			continue;
+//		if (!isSigned && m_numbers[i] != 0) //dont print "+" or "-" before the first number
+//		{
+//			if (m_numbers[i] > 0)
+//				std::cout << " + ";
+//			else if (m_numbers[i] < 0)
+//				std::cout << " - ";
+//			
+//		}
+//		else if (m_numbers[i] < 0)
+//			std::cout << "-";
+//			
+//		
+//		allZero = false;
+//		isSigned = false;
+//		std::cout << std::abs(m_numbers[i]) << "*(" << x << ")^" << i;
+//	}
+//	if(allZero) // all the vector with zeroes
+//		std::cout << 0;
+//}
 void PolyFunc::print(const std::string& x) const
 {
 	bool allZero = true;
 	bool isSigned = true;
-	
-	for (size_t i = 0; i < m_numbers.size(); i++)
+
+	for (int i = m_numbers.size()-1; i >= 0; i--)
 	{
 		if (m_numbers[i] == 0)
 			continue;
@@ -50,16 +78,16 @@ void PolyFunc::print(const std::string& x) const
 				std::cout << " + ";
 			else if (m_numbers[i] < 0)
 				std::cout << " - ";
-			
+
 		}
 		else if (m_numbers[i] < 0)
 			std::cout << "-";
-			
-		
+
+
 		allZero = false;
 		isSigned = false;
 		std::cout << std::abs(m_numbers[i]) << "*(" << x << ")^" << i;
 	}
-	if(allZero) // all the vector with zeroes
+	if (allZero) // all the vector with zeroes
 		std::cout << 0;
 }

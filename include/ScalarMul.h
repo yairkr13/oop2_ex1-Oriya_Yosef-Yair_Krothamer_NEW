@@ -4,7 +4,7 @@
 class ScalarMul : public SimpleFunc
 {
 public:
-	ScalarMul(double scalar, std::shared_ptr<SimpleFunc> func);
+	ScalarMul(double scalar,const std::shared_ptr<SimpleFunc>& func);
 	//~ScalarMul : public SimpleFunc();
 	void print(const std::string& x = "x") const override;
 	double calculate(double x) const override;
