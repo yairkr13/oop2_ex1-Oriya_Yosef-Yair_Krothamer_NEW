@@ -10,9 +10,19 @@ ScalarMul::ScalarMul(double scalar, std::shared_ptr<SimpleFunc> func) :
 
 ScalarMul::ScalarMul(double scalar, std::shared_ptr<SimpleFunc> func)
 {
-	m_factor *= scalar;
-	m_function = func ? func->clone() : nullptr;
+	m_factor = scalar;
+	//m_function = func ? func->clone() : nullptr;
+	m_function = func;
 }
+
+std::shared_ptr<SimpleFunc> ScalarMul::multiplyByScalar(double scalar) const {
+	// במקום ליצור עטיפה כפולה, אנחנו פשוט מכפילים את הסקלרים!
+	// אם היה לנו 2 ועכשיו קיבלנו 5, הסקלר החדש יהיה 10.
+	// הפונקציה הפנימית נשארת אותה פונקציה בדיוק.
+
+	return std::make_shared<ScalarMul>(m_factor * scalar, m_function->clone());
+}
+
 void ScalarMul::print(const std::string& x) const
 {
 	
