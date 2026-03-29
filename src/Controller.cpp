@@ -173,7 +173,7 @@ void Controller::evalFunc(int index, double x) const
         return;
     }
 
-    funcPtr->calculate(x);
+    funcPtr->printRes(x);
 }
 
 bool Controller::scaleCommand(std::istringstream& iss)

@@ -12,5 +12,5 @@ protected:
     std::shared_ptr<Function> m_func1Ptr;
     std::shared_ptr<Function> m_func2Ptr;//const??????????????
 private:
-    char m_opperator;
+    char m_operator;
 };

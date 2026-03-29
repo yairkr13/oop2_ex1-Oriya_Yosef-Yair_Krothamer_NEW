@@ -15,14 +15,9 @@ LogFunc* LogFunc::cloneImpl() const
 
 double LogFunc::calculate(double x) const//takes the value or save as m_xValue????
 {
-	double answer = std::log10(x) / std::log10(m_base);
-	std::ostringstream oss;
-	oss << x;
-
-	print(oss.str());
-	std::cout << " = " << std::round(answer*100)/100 << std::endl;
-	return answer;
+	return (std::log10(x) / std::log10(m_base));
 }
+
 
 void LogFunc::print(const std::string& x) const
 {
