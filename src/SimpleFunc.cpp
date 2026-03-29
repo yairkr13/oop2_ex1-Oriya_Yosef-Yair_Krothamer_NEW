@@ -11,7 +11,8 @@ std::shared_ptr<SimpleFunc> SimpleFunc::clone() const
 //	m_factor *= scalar;
 //}
 
-std::shared_ptr<SimpleFunc> SimpleFunc::multiplyByScalar(double scalar) const {
+std::shared_ptr<SimpleFunc> SimpleFunc::multiplyByScalar(double scalar) const 
+{
     // יוצר עטיפה רגילה: למשל 5 * sin(x)
     // (בהנחה ש-clone מחזיר shared_ptr, אם לא - התאם את זה לקוד שלך)
     return std::make_shared<ScalarMul>(scalar, this->clone());

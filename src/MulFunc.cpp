@@ -1,7 +1,16 @@
 #include "MulFunc.h"
 #include <iostream>
 #include <sstream>
+#include "ComplexFunc.h"
 
+MulFunc::MulFunc(const std::shared_ptr<Function>& ptr1,
+    const std::shared_ptr<Function>& ptr2)
+    : ComplexFunc(ptr1, ptr2, '*') // <--- מוסרים לאב את הסימן הנכון!
+{
+    // גוף הבנאי נשאר ריק
+}
+
+/*
 void MulFunc::print(const std::string& x) const
 {
     std::cout << "(";
@@ -9,7 +18,7 @@ void MulFunc::print(const std::string& x) const
     std::cout << ") * (";
     m_func2Ptr->print(x);
     std::cout << ")";
-}
+}*/
 
 double MulFunc::calculate(double x) const
 {

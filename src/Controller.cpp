@@ -189,7 +189,9 @@ bool Controller::scaleCommand(std::istringstream& iss)
     }
 
     m_simpleFunc.push_back(
-        m_simpleFunc[index]->multiplyByScalar(scalar)
+
+        m_simpleFunc[index]->multiplyByScalar(scalar)//?????????????????
+        //std::make_shared<ScalarMul>(m_simpleFunc[index],scalar)
     );
 
     return true;
@@ -206,8 +208,8 @@ bool Controller::delCommand(std::istringstream& iss)
 
 void Controller::deleteFunc(int index)
 {
-    int simpleSize = static_cast<int>(m_simpleFunc.size());
-    int totalSize = simpleSize + static_cast<int>(m_complexFunc.size());
+    int simpleSize = m_simpleFunc.size();
+    int totalSize = simpleSize + m_complexFunc.size();
 
     if (index < 0 || index >= totalSize)
     {
@@ -229,5 +231,5 @@ std::shared_ptr<Function> Controller::getFunc(int index) const
     if (index >= simpleSize && index < simpleSize + m_complexFunc.size())
         return m_complexFunc[index - simpleSize];
 
-    return nullptr; // אם האינדקס לא חוקי
+    return nullptr; // the index out of range
 }

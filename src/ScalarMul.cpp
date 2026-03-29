@@ -9,11 +9,13 @@ ScalarMul::ScalarMul(double scalar, std::shared_ptr<SimpleFunc> func) :
 }*/
 
 
-ScalarMul::ScalarMul(double scalar,const std::shared_ptr<SimpleFunc>& func)
+ScalarMul::ScalarMul(double scalar,const std::shared_ptr<SimpleFunc>& func):
+	m_factor(scalar),m_function(func)
 {
-	m_factor = scalar;
+	//m_factor = scalar;
 	//m_function = func ? func->clone() : nullptr;
-	m_function = func;//ask chet!!!!!!!!!!!!!!!!!!!!!!!!
+	//m_function = func;//ask chet!!!!!!!!!!!!!!!!!!!!!!!!
+	//m_function->multiplyByScalar(scalar)
 }
 
 std::shared_ptr<SimpleFunc> ScalarMul::multiplyByScalar(double scalar) const {
