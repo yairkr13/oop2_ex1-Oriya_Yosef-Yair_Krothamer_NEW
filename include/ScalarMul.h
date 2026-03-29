@@ -5,15 +5,12 @@ class ScalarMul : public SimpleFunc
 {
 public:
 	ScalarMul(double scalar,const std::shared_ptr<SimpleFunc>& func);
-	//~ScalarMul : public SimpleFunc();
 	void print(const std::string& x = "x") const override;
 	double calculate(double x) const override;
 	std::shared_ptr<SimpleFunc> multiplyByScalar(double scalar) const override;
 protected:
 	ScalarMul* cloneImpl() const override;
 private:
-	//Yair add
-	//double m_scalar;
 	std::shared_ptr<SimpleFunc> m_function;
 	double m_factor = 1.0;
 };

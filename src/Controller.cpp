@@ -204,8 +204,8 @@ bool Controller::delCommand(std::istringstream& iss)
 
 void Controller::deleteFunc(int index)//needed??????????
 {
-    int simpleSize = m_simpleFunc.size();
-    int totalSize = simpleSize + m_complexFunc.size();
+    int simpleSize = static_cast<int>(m_simpleFunc.size());
+    int totalSize = simpleSize + static_cast<int>(m_complexFunc.size());
 
     if (index < 0 || index >= totalSize)
     {

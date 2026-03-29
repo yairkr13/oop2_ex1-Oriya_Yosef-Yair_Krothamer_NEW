@@ -1,6 +1,7 @@
 #include "Function.h"
 #include <iostream>
 #include <sstream>
+
 void Function::printRes(double x) const
 {
     double answer = calculate(x);

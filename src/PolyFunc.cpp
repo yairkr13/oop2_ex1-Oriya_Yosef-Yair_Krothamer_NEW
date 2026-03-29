@@ -13,7 +13,7 @@ PolyFunc::PolyFunc(const std::string& line)
 		iss >> m_coefficients[i];
 }
 
-double PolyFunc::calculate(double x) const//takes the value or save as m_xValue????
+double PolyFunc::calculate(double x) const
 {
 	double answer = 0;
 	double xVal = 1;
@@ -35,7 +35,7 @@ void PolyFunc::print(const std::string& x) const
 	bool allZero = true;
 	bool isSigned = true;
 
-	for (int i = m_coefficients.size()-1; i >= 0; i--)
+	for (int i = static_cast<int>(m_coefficients.size())-1; i >= 0; i--)
 	{
 		if (m_coefficients[i] == 0)
 			continue;
