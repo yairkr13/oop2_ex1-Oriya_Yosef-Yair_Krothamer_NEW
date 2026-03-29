@@ -8,25 +8,20 @@ PolyFunc::PolyFunc(const std::string& line)
 	int n;
 	std::istringstream iss(line);
 	iss >> n;
-	m_numbers.resize(n);
+	m_coefficients.resize(n);
 	for (int i = 0; i < n; i++)
-		iss >> m_numbers[i];
+		iss >> m_coefficients[i];
 }
 
 double PolyFunc::calculate(double x) const//takes the value or save as m_xValue????
 {
 	double answer = 0;
 	double xVal = 1;
-	for (size_t i = 0;i < m_numbers.size(); i++)
+	for (size_t i = 0;i < m_coefficients.size(); i++)
 	{
-		answer += m_numbers[i] * (xVal);
+		answer += m_coefficients[i] * (xVal);
 		xVal *= x; 
 	}
-	std::ostringstream oss;
-	oss << x;
-
-	print(oss.str());
-	std::cout << " = " << std::round(answer * 100) / 100 << std::endl;
 	return answer;
 }
 
@@ -40,25 +35,25 @@ void PolyFunc::print(const std::string& x) const
 	bool allZero = true;
 	bool isSigned = true;
 
-	for (int i = m_numbers.size()-1; i >= 0; i--)
+	for (int i = m_coefficients.size()-1; i >= 0; i--)
 	{
-		if (m_numbers[i] == 0)
+		if (m_coefficients[i] == 0)
 			continue;
-		if (!isSigned && m_numbers[i] != 0) //dont print "+" or "-" before the first number
+		if (!isSigned && m_coefficients[i] != 0) //dont print "+" or "-" before the first number
 		{
-			if (m_numbers[i] > 0)
+			if (m_coefficients[i] > 0)
 				std::cout << " + ";
-			else if (m_numbers[i] < 0)
+			else if (m_coefficients[i] < 0)
 				std::cout << " - ";
 
 		}
-		else if (m_numbers[i] < 0)
+		else if (m_coefficients[i] < 0)
 			std::cout << "-";
 
 
 		allZero = false;
 		isSigned = false;
-		std::cout << std::abs(m_numbers[i]) << "*(" << x << ")^" << i;
+		std::cout << std::abs(m_coefficients[i]) << "*(" << x << ")^" << i;
 	}
 	if (allZero) // all the vector with zeroes
 		std::cout << 0;

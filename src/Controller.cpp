@@ -1,4 +1,3 @@
-//Check if its Work
 #include "Controller.h"
 #include <iostream>
 #include <string>
@@ -24,6 +23,7 @@ void Controller::run()
 		std::cout << "Please enter a command ('help' for command list): ";
 		if (!handleInput()) //the user enter "exit"
 			break;
+        std::cout << std::endl;
 	}
 }
 
@@ -182,17 +182,13 @@ bool Controller::scaleCommand(std::istringstream& iss)
     double scalar;
     iss >> index >> scalar;
 
-    if (index < 0 || index >= static_cast<int>(m_simpleFunc.size()))
+    if (index < 0 || index >= m_simpleFunc.size())
     {
         std::cout << "Invalid function index\n";
         return true;
     }
-
-    m_simpleFunc.push_back(
-
-        m_simpleFunc[index]->multiplyByScalar(scalar)//?????????????????
-        //std::make_shared<ScalarMul>(m_simpleFunc[index],scalar)
-    );
+    //?????????????????????????
+    m_simpleFunc.push_back(m_simpleFunc[index]->multiplyByScalar(scalar));
 
     return true;
 }
@@ -206,7 +202,7 @@ bool Controller::delCommand(std::istringstream& iss)
     return true;
 }
 
-void Controller::deleteFunc(int index)
+void Controller::deleteFunc(int index)//needed??????????
 {
     int simpleSize = m_simpleFunc.size();
     int totalSize = simpleSize + m_complexFunc.size();
