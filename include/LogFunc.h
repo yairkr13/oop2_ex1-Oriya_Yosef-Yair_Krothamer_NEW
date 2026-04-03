@@ -9,7 +9,7 @@ public:
     void print(const std::string& x = "x") const override;
     double calculate(double x) const override;
 protected:
-    LogFunc* cloneImpl() const override;//private?????????????????
 private:
+    LogFunc* cloneImpl() const override;
     double m_base;
 };

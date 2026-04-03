@@ -10,7 +10,7 @@ public:
     void print(const std::string& x="x") const override;
 protected:
     std::shared_ptr<Function> m_func1Ptr;
-    std::shared_ptr<Function> m_func2Ptr;//const??????????????
+    std::shared_ptr<Function> m_func2Ptr;
 private:
     char m_operator;
 };

@@ -11,8 +11,8 @@ public:
     double calculate(double x) const override;
 
 protected:
-    PolyFunc* cloneImpl() const override;
 
 private:
+    PolyFunc* cloneImpl() const override;
     std::vector<double> m_coefficients;
 };

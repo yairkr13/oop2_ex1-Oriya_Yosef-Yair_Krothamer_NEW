@@ -15,8 +15,6 @@ private:
     void print() const;
     bool handleInput();
     void printHelp() const;
-    void deleteFunc(int index);
-    void evalFunc(int index, double x) const;
     std::shared_ptr<Function> getFunc(int index) const;
 
     bool logCommand(std::istringstream& iss);

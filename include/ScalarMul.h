@@ -9,8 +9,8 @@ public:
 	double calculate(double x) const override;
 	std::shared_ptr<SimpleFunc> multiplyByScalar(double scalar) const override;
 protected:
-	ScalarMul* cloneImpl() const override;
 private:
+	ScalarMul* cloneImpl() const override;
 	std::shared_ptr<SimpleFunc> m_function;
 	double m_factor = 1.0;
 };

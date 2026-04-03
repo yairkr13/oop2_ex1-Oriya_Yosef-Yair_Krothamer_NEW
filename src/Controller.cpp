@@ -159,21 +159,16 @@ bool Controller::evalCommand(std::istringstream& iss)
     double x;
     iss >> index >> x;
 
-    evalFunc(index, x);
-    return true;
-}
-
-void Controller::evalFunc(int index, double x) const
-{
     const auto funcPtr = getFunc(index);
 
     if (!funcPtr)
     {
         std::cout << "Invalid function index\n";
-        return;
+        return true;
     }
 
-    funcPtr->printRes(x);
+    funcPtr->printRes(x); 
+    return true;
 }
 
 bool Controller::scaleCommand(std::istringstream& iss)
@@ -187,7 +182,6 @@ bool Controller::scaleCommand(std::istringstream& iss)
         std::cout << "Invalid function index\n";
         return true;
     }
-    //?????????????????????????
     m_simpleFunc.push_back(m_simpleFunc[index]->multiplyByScalar(scalar));
 
     return true;
@@ -196,27 +190,23 @@ bool Controller::scaleCommand(std::istringstream& iss)
 bool Controller::delCommand(std::istringstream& iss)
 {
     int index;
-    iss >> index;
+    iss >> index; 
 
-    deleteFunc(index);
-    return true;
-}
-
-void Controller::deleteFunc(int index)//needed??????????
-{
     int simpleSize = static_cast<int>(m_simpleFunc.size());
     int totalSize = simpleSize + static_cast<int>(m_complexFunc.size());
 
     if (index < 0 || index >= totalSize)
     {
         std::cout << "Invalid function index\n";
-        return;
+        return true; 
     }
 
     if (index < simpleSize)
         m_simpleFunc.erase(m_simpleFunc.begin() + index);
     else
         m_complexFunc.erase(m_complexFunc.begin() + (index - simpleSize));
+
+    return true;
 }
 
 std::shared_ptr<Function> Controller::getFunc(int index) const

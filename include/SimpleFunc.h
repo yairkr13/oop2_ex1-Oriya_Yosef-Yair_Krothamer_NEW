@@ -8,6 +8,7 @@ public:
 	std::shared_ptr<SimpleFunc> clone() const; 
 	virtual std::shared_ptr<SimpleFunc> multiplyByScalar(double scalar) const;
 protected:
+private:
 	virtual SimpleFunc* cloneImpl() const = 0;
 };
 
