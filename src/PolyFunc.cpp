@@ -9,7 +9,7 @@ PolyFunc::PolyFunc(const std::string& line)
 	std::istringstream iss(line);
 	iss >> n;
 	m_coefficients.resize(n);
-	for (int i = 0; i < n; i++)
+	for (int i = 0; i < n; i++)//enter the coefficients to the vector
 		iss >> m_coefficients[i];
 }
 
@@ -20,7 +20,8 @@ double PolyFunc::calculate(double x) const
 	for (size_t i = 0;i < m_coefficients.size(); i++)
 	{
 		answer += m_coefficients[i] * (xVal);
-		xVal *= x; 
+		xVal *= x; //save the value of x^i in each iteration to avoid
+		//calculating it every time with pow
 	}
 	return answer;
 }
@@ -39,7 +40,7 @@ void PolyFunc::print(const std::string& x) const
 	{
 		if (m_coefficients[i] == 0)
 			continue;
-		if (!isSigned && m_coefficients[i] != 0) //dont print "+" or "-" before the first number
+		if (!isSigned && m_coefficients[i] != 0) //dont print "+" before the first number
 		{
 			if (m_coefficients[i] > 0)
 				std::cout << " + ";
@@ -47,7 +48,7 @@ void PolyFunc::print(const std::string& x) const
 				std::cout << " - ";
 
 		}
-		else if (m_coefficients[i] < 0)
+		else if (m_coefficients[i] < 0)//print "-" before the first number if its negative
 			std::cout << "-";
 
 

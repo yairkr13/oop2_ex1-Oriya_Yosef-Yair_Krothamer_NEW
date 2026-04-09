@@ -9,6 +9,9 @@ ComplexFunc::ComplexFunc(const std::shared_ptr<Function>& ptr1,
 
 void ComplexFunc::print(const std::string& x) const
 {
+	//use the m_operator to print the correct operator
+    // between the two functions, and call the print method of each 
+    // function to print them in the correct format
     std::cout << "(";
     m_func1Ptr->print(x);
     std::cout << ") " << m_operator << " (";

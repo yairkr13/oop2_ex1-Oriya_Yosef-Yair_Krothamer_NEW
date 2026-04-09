@@ -9,5 +9,7 @@ MulFunc::MulFunc(const std::shared_ptr<Function>& ptr1,
 
 double MulFunc::calculate(double x) const
 {
+	//call the calculate method of the two functions and
+	// return their multiplication
 	return (m_func1Ptr->calculate(x) * m_func2Ptr->calculate(x));
 }

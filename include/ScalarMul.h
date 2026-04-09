@@ -12,5 +12,5 @@ protected:
 private:
 	ScalarMul* cloneImpl() const override;
 	std::shared_ptr<SimpleFunc> m_function;
-	double m_factor = 1.0;
+	double m_scalar = 1.0;
 };

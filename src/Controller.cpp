@@ -177,11 +177,13 @@ bool Controller::scaleCommand(std::istringstream& iss)
     double scalar;
     iss >> index >> scalar;
 
+	//make sure the index is valid and points to a simple function
     if (index < 0 || index >= m_simpleFunc.size())
     {
         std::cout << "Invalid function index\n";
         return true;
     }
+    //add to the simple function vector
     m_simpleFunc.push_back(m_simpleFunc[index]->multiplyByScalar(scalar));
 
     return true;
@@ -201,6 +203,7 @@ bool Controller::delCommand(std::istringstream& iss)
         return true; 
     }
 
+    //erase from the right vector
     if (index < simpleSize)
         m_simpleFunc.erase(m_simpleFunc.begin() + index);
     else
@@ -209,6 +212,8 @@ bool Controller::delCommand(std::istringstream& iss)
     return true;
 }
 
+//returns a shared pointer to the function at the given index, 
+// or nullptr if the index is out of range
 std::shared_ptr<Function> Controller::getFunc(int index) const
 {
     size_t simpleSize = m_simpleFunc.size();
